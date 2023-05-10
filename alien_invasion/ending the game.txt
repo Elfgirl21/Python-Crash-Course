@@ -1,0 +1,13 @@
+spritecollideany() - function takes 2 args: a sprite and a group
+    looks for any member of group that has collided with the sprite and stops looking through the group as soon as it finds
+    one member that has collided with the sprite
+
+    In Alien Invasion - it loops through the group aliens and returns the 1st alien it finds that has collided with ship
+
+    if no collisions, the function returns None
+
+instead of destorying the ship, count how many times ship been hit.
+in game stats module
+    call reset_stats() method instead of directly in__init__().
+    to set stats properly when GameStats instance is first called
+    and any time player starts a new game

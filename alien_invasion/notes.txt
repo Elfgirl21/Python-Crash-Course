@@ -1,0 +1,41 @@
+self.screen is called a surface
+    surface - in Pygame is a part of the screen where a game element can be displayed
+    the surface returned by display.set_mode() represents the entire game window.
+
+    when activate the game's animation loop, this surface will be redrawn on every pass through the loop,
+        can be updated w/ any changes triggered by user input
+
+        Event - is action that user perfomrs while playing the game, such as pressing key or moving the mouse
+        for program to response to events, we write this event loop to listen for events and perform appropriate tasks
+        depending on kinds of events occur. The for loop is a event loop
+
+        to access these events that Pygame detects, used pygame.event.get() function
+            returns a list of events that have taken place since the last time this function was called
+            any key or mouse event will cause this for loop to run 
+            insude loop: series of if statements to detect & repsond to specific events
+            EX: when player clicks on game window's close button, pygame.QUIT event is detected
+                and we call sys.exit() to exit game
+
+        call pygame.display.flip() tells Pygame to make the most recently drawn screen visible
+            erasing old screen so only new screen is visible through each pass through while loop
+            when game elements move around, pygame.display.flip() continuall updates the display
+
+        at the end of file created a instance of the game and then called run_game()
+        placed run_game() in an if block that only runs if the file is called directly
+
+
+Colour in Pygame
+RGB
+Red - (255, 0, 0)
+Green - (0, 255, 0)
+Blue - (0, 0 , 255)
+Light grey - (230, 230, 230)
+
+adding images to game
+easiest to use bitmap(.bmp) file b/c Pygame loads bitmaps by default
+can configure Pygame to use other file types, some file depend on certain image libraries that must be installed
+most files are .jpg or .png - convert them to bitmaps using tools: Photoshop, GIMP, Paint
+
+pay attention to background colour of images. Try to find a transparent or solid background that you can replace with any
+background colour using an image editor. Game will look better if the image background matches your game's background. Alternatively, can 
+make game background make image background

@@ -1,0 +1,9 @@
+sprite.groupcollide() - checks for collisions b/w mebers of two groups
+
+returns dictionary of bullets and aliens - bullets keys, aliens value to those keys
+
+collisions = pygame.groupcollide(
+    self.bullets, self.aliens, True, True)
+    compares position of a ll bullets in self.bullets and all aliens in self.aliens and identifies any that overlap
+    when there's a overlap, groupcollide() adds a key-value pair to dictionary it returns
+    2 true args tell pygame to delete the bullets and aliens that have collided

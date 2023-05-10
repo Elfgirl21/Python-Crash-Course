@@ -1,0 +1,16 @@
+when working with a rect() object
+    can use (x,y) of the top, bottom, left and right edges
+    when centering
+        work with the center game element, centerx, or centery attributes of rect
+    when working at edge of screen, 
+        work with top, bottom, left or right attributes
+
+    attributes that combine these properties
+        midbottom, midtop, midleft, midright
+
+    when adjusting horiontal or vertical placement of rect,
+        just use x and y attributes,
+        x & y coordinates of its top-left corner
+
+    In Pygame, the origion (0,0) is top-left corner of screen and coordinates increading as you go down and to the right
+    on a 1200 by 800, bottom-right corner has coordinate (1200, 800) - refers to the game window, not physical screen

@@ -1,0 +1,2 @@
+Usig sprites, 
+    can group related elemets in game & act on all grouped elements at once

@@ -1,0 +1,19 @@
+pygame doesn't have a built-in method for making buttons
+have to write a class
+
+font.render() - turns text stored in msg into an image, tore it in self.msg_image
+    also takes a Boolean value to turn antialiasing on or off
+        (antialiasing makes edges of text smoother)
+    text font color
+    background color - same as button color
+
+starting the game
+    MOUSEBUTTONDWN - detects mouse click anywhere on screen
+    only on play button for this game
+
+    pygame.mouse.get_pos() - returns a tuple containing the mouse cursor's x & y-coordinates when mouse button clicked
+
+    use rect method collidepoint() to check whether the point of the mouse click overlaps the region deined by Play button's rect
+
+if button_clicked and not self.stats.game_active 
+    game restate only if Play button is clicked and game is not currently active

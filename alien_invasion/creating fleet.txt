@@ -1,0 +1,8 @@
+alien.x = alien_width + 2 * alien_width * alien_number
+1 -new alien, set it's x-coordinate vlue to place it in row
+2 - each alien is pushed to right one alien width from left margin
+3 - next, multiply alien width by 2 to account for space each alien takes up, include the empty space to it's right
+4 - multiply this amount by alien's position in the row
+
+change y coordinate value when alien is not in first row
+alien.rect.y = alien.alien.hieght + 2 * alien.rect.height * row_num

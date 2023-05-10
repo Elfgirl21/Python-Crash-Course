@@ -1,0 +1,4 @@
+helpful to separate drop spped from aliens' horizontal speed so you can adjust the two speeds independently
+
+Implement setting fleet_direction, could use text values (left & right) but end up with if-elif statements testing
+for the fleet direction. instead used numbers since we only have 2 directions

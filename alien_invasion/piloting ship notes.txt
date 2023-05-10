@@ -1,0 +1,7 @@
+each event is picked up by pygame.event.get() method
+in _check_events() method need to specify what kind of events we want the game to check for.
+each keypress is registered as a KEYDOWN event
+when pygame detects a KEYDOWN event, need to check whether the key that was pressed is one that
+    triggers a certain action
+
+pygame.KEYUP event when key is release (use for continuous holding downkeys)

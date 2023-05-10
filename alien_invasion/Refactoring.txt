@@ -1,0 +1,3 @@
+Helper method - does work inside a class but itsn't meant to be called through an instance
+    in python, a single leading uderscore indicates a helper method
+    to call a method from inside a class, use dot notation with variable self and name of method

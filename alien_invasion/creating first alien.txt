@@ -1,0 +1,1 @@
+pygame group method that automatically draws all elements of a group to the screen

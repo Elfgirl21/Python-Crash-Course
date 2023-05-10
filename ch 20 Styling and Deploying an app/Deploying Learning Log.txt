@@ -1,0 +1,194 @@
+Mod settings.py for Heroku
+    django_heroku.settings(locals()) - function modifies some settings need specific values for the heroku environment
+
+Making a Procfile to start Processes
+Procfile-tells Heroku which Processes to start to properly serve the project
+web: gunicorn learning_log.wsgi --log-file -
+    tells Heroku to use gunicorn as a server and to use the settings in learning_log/wsgi.py to launch app
+    log-file flag- tells Heroku the kinds of events to log
+
+Using Git to Track the Project's Files
+Configuring Git
+Type in terminal
+    git config --global user.name "Elfgirl21"
+    git config --global user.email "loh1996@msn.com"
+
+Ignoring Files
+don't need Git to keep track of every file in project
+in .gitignore file
+    tell Git to ignore the entire ll_env directory - b/c can recreate it automatically at any time
+    don't need to track __pycache__directory - contains .pyc files created automatically when Django runs the .py files
+    don't track changes to local databases, b/c it's a bad habit
+        If using SQLite on server, make accidentallly overwrite live database w/ local test database when pushing
+        project to server
+    *.sqlite3 - tells Git to ignore any file that ends witht he extension .sqlite3
+
+Making hidden files visible
+Most OS hide files and folders beginning with a dot. Won't see these kinds of files by default when broswering the iles
+as programmer - need to see them 
+on windows
+    -Open Windows Explore 
+    -open a folder such as Desktop
+    -click View 
+    -make sure File name extensions and Hidden items are checked
+
+on mac 
+press control+shift+. 
+
+Committing the Project
+need to initialize Git repository for Learning Log, add all necessary files to repo and commit the initial state of project
+how type in terminal (in virtual env)
+    git init 
+Output: Initialized empty Git repository in /home/ehmatthes/pcc/learning_log/.git/
+    git add .
+    git commint -am "Ready for deployment to heroku."
+Output:[master (root-commit) 79fef72] Ready for deployment to heroku
+       45 files changed, 712 insertions(+)
+       create mode 100644 .gitignore
+       create mode 100644 Procfile
+       --snip--
+       create mode 100644 users/views.py
+    git status
+Output: On branch master
+        nothing to commit, working tree clean
+
+-a flag - tells Git to include all cahnged files 
+
+Pushing to Heroku
+in terminal
+    heroku login
+Ouput: heroku: Press any keu to open up the broswer to login or q to exit:
+Logging in... done 
+Logged in as loh1996@msn.com
+    heroku create
+Output: Creating app... done,  select-lowlands-82594
+        https://secret-lowlands-82594.herokuapp.com/ |
+            https://git.heroku.com/secret-lowlands-82594.git
+    git push heroku master
+Output: --spin--
+        remote: --------> Launching...
+        romote:           Released v5
+        remote:           https://secret-lowlands-82594.herokuapp.com/ deployed to Heroku
+        remote: Verifying deploy... done 
+        To https://git.heroku.com/secret-lowlands-82594.git
+        * [new branch]       master -> master
+
+heroku create command 
+    build empty project 
+    generates a name made up of two words and a number: change change later on
+
+git push heroku master
+    Git pushing master branch of project to repo Heroku just created
+
+Then heroku builds project on its servers using these files
+https://secret-lowlands-82594.herokuapp.com how to access live project
+
+to check server process started correctly used following command
+    heroku ps 
+open app in browser using following command
+    heroku Open
+
+Setting up the Database on Heroku
+ how to run migrate on the Heroku deployment   
+
+    heroku run python manage.py migrate
+Running 'python manage.py migrate' on  secret-lowlands-82594... up, run.3060
+--spin--
+Running migrations:
+--spin--
+Applying learning_logs.0001_initial... OK
+Applying learning_logs.0002_entry... OK
+Applying learning_logs.0003_topic_owner... OK
+Applying sessions.0001_initial... OK
+
+heroku run python manage.py migrate 
+    Heroku creates a terminal session to run the migrate command
+
+next Django applies default igrations and the ones we generated during the dvelopment of Learning Log
+
+Now can visit the app. Notice: won't see any data entered on local deployment (included superuser account)
+ didn't copy the data to live server - good practice
+
+Refining the Heroki deployment
+Creating Superuser on Heroku
+    Use Bash terminal session to create a superuser to access the admin site on live application
+    heroku run bash 
+Running 'bush' on  secret-lowlands-82594... up, run.9858
+~ $ ls 
+learning_log learning_logs manage.py Procfile requirements.txt runtime.txt
+staticfiles users
+~ $ python manage.py createsuperuser
+Username (leave blank to use ' u47318'): ll_admin
+Email address:
+Password:
+Password(again):
+Superuser created successfully.
+! $ exit
+exit
+
+Creating USer-friendly URL on Heroku
+rename app
+    heroku apps:remove learning-log 
+
+Securing Live Project
+in the settings DEBUG = True
+    provides debug messages when error occur
+    Great when developing the project, not when it's live
+    so go in settings.py and control this by setting an environment variable
+    set it to false
+
+Committing and Pushing changes
+    git commit -am "Set DEBUG based on environment variables."
+[master 3427244] Set DEBUG based on environment variables.
+1 file changed, 4 insertions(+)
+    git status
+On branch master
+nothing to commit, working tree clean
+
+pushing updated repo to Heroku
+    git push heroku master
+remote: Building source:
+remote: 
+remote: -----> Python app detected
+remote: -----> Installing requirements with pip
+--spin--
+remote: -----> Launching...
+remote:        Released v6
+remote: https://learning-log.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done
+To https://git.heroku.com/learning-log.git
+   144f020..d5075a1  master -> master
+
+
+Setting Environment Variables on Heroku
+use command
+    heroku config:set DEBUG=FALSE 
+Setting DEBUG and restarting  learing-log... done, v7
+DEBUG: FALSE 
+check by entered a URL not defined, should get generic error page 
+
+Creating Custon Error PAges
+404 - Django code is correct, but object being requested doesn't exist
+500 - error in code
+
+Making Custom Templates 
+os.path.join(BASE_DIR, 'templates')
+    tells Django to look in root template directory for error page templates
+
+Viewing the Error Pages locally
+set DEBUG= FALSE if what to see how the error page look like on local
+
+Pushing changes to Heroku
+same thing as beofre
+
+Using the get_object_or_404() Method 
+when requests for topic or entry doesn't exist, it's a 500 server error
+Django tries to render nonexistent page but doesn't have enough info and result is 500 error
+this situation is more accurately nadled as 404 error
+can implement behavior using Django shortcut function get_object_or_404()
+
+Deleting a Project on Heroku
+go to Heroku website to delete project or   
+    heroku apps:destroy --app appname
+    

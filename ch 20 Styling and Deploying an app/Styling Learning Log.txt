@@ -1,0 +1,35 @@
+Django-bootstrap4 App
+    integrate Dootstrap into project
+    downloads required files, in appropriate location in project, makes styling
+    directives available in project's templates
+    
+Using Bootstrap to Style Learning Log
+bg-light - light background
+mb- margin-bottom
+collapse-causes the navigation bar to collagpse when the user shrinks the broser window or when site is displayed on mobile
+
+Bootstrap defines nav elements as items in an unordered list w/ style rules that make it look nothering like a list
+every link or element you need on the var can be included as an item in one of these lists
+mr-margin-right
+ml-margin-left
+span element- styles pieces of text, or elements of page, that are part of a longer line
+appear diff from link
+
+main-used for most signigicant part of body of page
+
+Styling the Home page Using a Jumbotron
+jumbotron-large box that stands out from rest of page and can contain anything you want
+    an div element with set of styling direcives applied
+
+display-3 -  selector adds a thinner and taller look to this particular header
+&raquo - HTML entity that looks like two right angle brackets combined >>
+
+Styling the Login page
+ {% bootstrap_form form %} replaces {{ form.as_p }}
+    template tag inserts Bootstrap style rules into the form's individual elements as the form is rendered
+
+Styling the Topics page
+Styling the Entries on Topic page
+card-header - contains date the entry was made and link to edit the entry
+<small>- makes links appear little smaller than the timestamp
+card-body- places text of the entry in a simple box on the card

@@ -1,0 +1,10 @@
+relative file path - tells python to look for a given location relative to the directory where the currently
+    running program file is store
+    ex: 
+        with open ('text_files\filename.txt') as file_object:
+
+absolute file path - exact location of file
+    ex:
+    file_path = '\home\ehmatthes\other_files\text_files\filename.txt'
+    with open(file_path) as file_object:
+    

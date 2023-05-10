@@ -1,0 +1,18 @@
+Expections - special objects to manage errors that arise while a program is running
+    when pythons not sure what to do next when an error occurs, it creates an expection object
+    write a program w/ a exception, program will continue
+    if not, trackback
+    try-except blocks
+        ask to do something 
+        also what do to do if expection
+
+        Analysing text
+            split() - build list of words from strings
+            
+json file - stores user data so it ins't lost when your program stops 
+JavaScript Object Notation
+dump info into a file and load hat data the next time the program runs
+share data b/w programs in pythons
+not specific to pythons
+    Refactoring -breaking up code into a series of functions that have specific jobs
+    makes code cleaner

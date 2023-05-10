@@ -1,0 +1,5 @@
+In Python you can used if statements and elif chains to check for cerian conditions.
+In Python you can structure my code using classes, writing methods(functions) with in that code. 
+In Python you can use lists and dictories where we store data in. 
+In Python you can import modules and functions into the main program files. 
+In Python you can read files and store contents in a variable. 

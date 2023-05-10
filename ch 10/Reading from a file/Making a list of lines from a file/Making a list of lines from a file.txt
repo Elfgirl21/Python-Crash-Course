@@ -1,0 +1,3 @@
+want access to file or the contents outside the with block
+    store file's lines in a list inside the block and then work with that list
+    process parts of file immediately and postpone some processing for later in program

@@ -1,0 +1,12 @@
+ways to pass arguments to functions
+positional arguments - same order the parameters are written
+    order matters for positional arguments
+keyword arguments - each arguments consists of a variable name and a value (name-value pair)
+    frees you from having to worry about correctly ordering your args in function call
+    clarify role of each value in function call
+
+Default values - if there's isnt a argument value, python will use the default value of parameter in function
+
+errors about unmatched args
+    occur when function is call with too many or too few args
+important to use descriptive names for functions and variables

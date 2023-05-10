@@ -1,0 +1,9 @@
+'functions dont always to have display output directly'
+'can return a value or set of values'
+'return value - value return by function'
+    'allow you to move much of programs grunt work into functions'
+'return statement takes value from inside function and sends it back to the line that called function'
+
+optional values allow functions to handle wide range of use cases while letting function calls remain as simple
+as possible
+

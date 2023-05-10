@@ -1,0 +1,59 @@
+Advantage of functions - separates blocks of code from main program
+"""use descriptive names for functions"""
+Module - separate file where to store functions, file ending in .py
+import - statement that tells python to make the code in a module available in 
+    current running program file.
+if you use this kind of import statement to import an entire module named module_name.py
+    each function in the module is available through the following syntax: module_name.function_name()
+importing specific functions
+    import specific function from module:
+    from module_name import function_name
+    also can import as many as you want:
+    from module_name import function_0, function_1, function_2
+With this syntax, dont have to use dot notation when calling a function
+
+Using as to Give a function an alias
+name of function youre importing might conflict w/ an existing name in progrgam
+    or function name is too long - use short, unqiue alias -aka nickname for function
+    from module_name import function_name as function
+
+Using as to Give a module an alias
+giving modules short alias allows you to call the modules functions more quickly
+    import module_name as mn
+more concise, but helps you focus on the descriptive function names - tell you what each function does
+                                                        more important
+
+Importting all functions in a module
+from module_name import *
+    asterisk in import statement tells python to copy every functions from module_name into the program file
+    can call each function by name w/out using dot notation
+    HOWEVER, best not to use this approach when working with large modules that you didnt write: if there
+    is a module that matches a name in your project == unexpected results
+        python will overwrite functions instead of Importting
+    BEST APPROACH import function or functions you want, or import the entire module & used dot notation
+
+Styling functions
+-descriptive names
+    lowercase & underscores
+    Modules names should use these conventions as well
+
+-comment that explains what the function does
+    immediately ater the function def & use docstring format
+    programmers can use it and trust the code if function is well-documented
+
+-specify default value
+    no spaces shold be used on either side of equal Sign
+    def function_name(parameter_0, parameter_1='dfault value')
+    same convention used for keyword args in function calls
+    function_name(value_0, parareter_1='value')
+
+-79 characters per line
+    def function_name(
+            parameter_0, parameter_1, parameter_2,
+            parameter_3, parameter_4, parameter_5):
+
+-separate functions by two blank lines
+
+-all import statements should be written at begining of file
+    )
+-

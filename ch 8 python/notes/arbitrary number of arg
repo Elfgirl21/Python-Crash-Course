@@ -1,0 +1,14 @@
+won't know ahead of time how many args a function needs
+python allows functions to collect arbitrary number of args from calling statments
+* - asterick in parameter name tells python to make an empty tuple called toppings & pack
+    whatever values it receives into this tuple
+
+mixing positional & arbitray args
+Want function to accept sveral diff kinds of arg, the parameter that accepts
+    the arbitray of args must be placed last in fucntion def
+    Python matchs positional & keywords args 1st and then collects remaining args in 
+        final parameter
+
+using arbitary keyword args
+function accepts as many key-value pairs as the calling statement provides
+**n- double asterick tells python to create an empty dic

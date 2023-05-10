@@ -1,0 +1,17 @@
+in the venv
+    put in terminal
+    django=admin startproject project_name
+
+    make sure that the projects there
+    dir project_name
+
+to create database
+    make sure to be in the correct folder
+        cd project_name
+    then 
+        python manage.py migrate
+
+View project
+    python manage.py runserver
+    (again make sure you're in the project's folder)
+

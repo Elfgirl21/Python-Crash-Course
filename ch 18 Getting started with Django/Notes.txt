@@ -1,0 +1,37 @@
+Django - web framework
+    tools to help build interactive websites
+
+Virtual environment - place on your system where you can install packages and isolate
+them from all other python packages
+    separating project's libraries from other projects is beneficial
+    and necessary when deploying the Learning Log
+
+command: pip install django
+    same on all systems since we're installing in a virtual environment
+    no need for --user flag adn no use for longer commands
+    Django only available when the ll_env is active
+
+command: migrate
+    modify a database
+
+checking if set up properly
+    Django should start a server called development server - can view project on system to see how well it works
+    Request a page by entering a URL in a browser, Django server responds to 
+    that request by building appropriate page and sending it to browser
+
+Django project
+    organized as agroup of individual apps that work together to make a project work as a whole
+
+    django-admin start app app_name instead of python manage.py startapp learning_logs
+
+    Model - tells Django how to work with the data that will be stored in app
+        just a class
+
+        Class Topic - inherst from Model
+        Model-parent class included in Django that defines a model's basic functionality
+
+        CharField - use want to store a small amount of text (name, title or city)
+
+        auto_now_add=True
+            tells Django to automatically set this attribute to current date and time whenver user creates a new topic
+        

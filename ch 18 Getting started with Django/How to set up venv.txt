@@ -1,0 +1,8 @@
+step 1 (if you do this on desktop)
+    python -m venv ll_env
+step 2
+    ll_env\Scripts\Activate
+
+The following is if you have to install Django(again)
+when in the (ll_env): 
+    -m pip install Django

@@ -1,0 +1,55 @@
+ Parent template
+ template tag {% %}- generates info to be displayed on a page
+        {% url 'learning_logs:index' %} - generates URL matching URL pattern defined in learning_logs/urls.py with name index
+        namespace - comes from value we assigned to app_name in learning_logs/urls.py
+
+    block tag {% block content %}{% endblock content %} - content is a placeholder
+        child template will define kind of info that goes in content block
+
+Child template
+    {% extends 'learning_logs/base.html %} - inherits from parent template
+
+Topics page
+    Topics views
+    topics = Topic.objects.order_by('date_added')
+        query database by asking for the Topic objects, sorted by data_added
+        store the resulting queryset in topics
+    context = {'topics': topics}
+        dictionary in which keys are names use in template to access data and values are data need to send to template
+    return render()
+        building page that uses data, pass context variable, request object and path to template to render()
+    
+    Topics Template
+    {% for topic in topics %} - equivalent to for loop
+    {% endfor %} - end for lop explicitly (templates need this)
+        python used indentation to indicate end of for loop
+
+    {{}} - wrap variable in double brackets to print it
+    {{topic}} be replaced by value of topic on each pass through the loop
+    {% empty %} - template tag, tells Django what to do if there are no items in list
+        in this case print "No topics have been added yet."
+
+Individual Topic pages
+    Topic URL pattern
+        uses topic's id attribute to indicate which topic was requested
+        <int:topic_id/ - matches integer b/wtwo // and stores value in arg called topic_id
+            When Django finds URL that matches this pattern, calls view function topic() w/
+            value stored in topic_id and use that value to get correct topic inside function
+    
+    Topic view
+    topic = Topic.objects.get()
+    entries = topic.entry_set.order_by('-date_added)
+        these two lines are queries
+
+    Topic template
+    variable topic is available b/c it's included in the context dictionary
+    timestamp - {{ entry.date_added|date: 'M d, Y H:i' }} - displays value of date_added attribute
+        In Django, | represents a template filter - function that modifies the value in template variable
+        filter date: 'M d, Y H:i' dipslays timestamp in format January 1, 2023 10:29
+    text - {{ entry.text|linebreaks }} - displays the full text from entry
+        filter linebreaks ensures that long text entries include line breaks in format understoood by browsers 
+        rather than showing a block of uninterrupted text
+
+    Links from Topics page
+    added the topic.id attribute to the URL template tag since the pattern require a topic_id arg
+    

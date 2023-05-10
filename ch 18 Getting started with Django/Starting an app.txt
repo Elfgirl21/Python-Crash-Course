@@ -1,0 +1,110 @@
+make sure you're in venv
+then in the correct folder for your project
+Then
+    python manage.py startapp learning_logs
+    
+
+Defining Models
+    find the models.py
+    create a model(code-wise is a class)
+    class model_Name(models.Model) - inherits from Model(parent)
+
+Activating models
+    find setting.py in project_name folder
+        this case learning_log\learning_log
+    add your app at the top of INSTALLED_APPS
+    then modify database    
+        (be in project_name folder)
+        python manage.py makemigrations learning_logs
+            makemigrations tells Django to figure out how to modify the database so it 
+            can store the data assoicated with any new models we've definded
+            migration file is created and create a table for the model
+
+Admin site
+    Superuser - user who has all privileges available on site
+    create Superuser in terminal
+        python manage.py createsuperuser
+    fill in the following prompts
+        Username (leave blank to use 'elfgirl21'):
+        Email address: 
+        Password: 
+        Password (again):
+
+    Django doesn't store password entered, instead it stores a string derived from the password, called a hash
+    each time password is entered, Django hashes your entry and comparies it to the stored hash
+        if the two hashs matched, authenticated
+    by requiring this, if an attacker gains access to a site's database, they'll be able to read its stored hashes not passwords
+
+REgistering a model with Admin site
+    Django includes some models in the admin site automatically (User and Group) but some need to be created
+    To register models
+        In learning_log project
+        In admin.py:
+        from .models import Topic
+        admin.site.register(topic)
+
+        the dot in front of models tells Django to look for models.py in same directory as admin.py
+        code admin.site.register() tells Django to manage model through admin site
+
+
+Defining the entry model
+    need to define a model for kinds of entries users can make in their learning learning_logs
+    each entry needs to be associated with a particular topic
+    This relationship is called a many-to-one relationship
+        many entries can be associated with one topic
+
+    foregin key - a refereence to another record in the database
+    on_delete=models.CASCADE - arg tells Django that when a topic is deleted, all entries associated with that toppic should be 
+        deleted as well
+    textField() - doesn't need a size limit
+
+    nest Metaclass into Entry class
+        holds extra info for managing a model
+            this case: special attribute telling Django to use Entries when it needs to refer to more than one entry
+            w/out this, Django would refer to multiple entries as Entrys
+
+            __str__() method shows the first 50 characters
+
+Migrating the Entry Model
+in venv 
+    python manage.py makemigrations learning_logs
+    output:
+        Migrations for 'learning_logs':
+            learning_logs\migrations\0002_entry.py #generated, tells Django how to modify the database to store info related to model Entry
+                - Create model Entry
+    python manage.py migrate
+
+The Django Shell
+    can examine data programmatically through an interactive terminal session
+    interactive environment is called the Django Shell
+        great for testing and trouble-shooting
+
+    in venv
+    python manage.py shell - launches python interpreter explore project database
+    then import class from app_name.models module
+    then model_name.objects.all() - get all instances
+        returns a queryset - list
+    can loop over queryset
+
+    If ID of particular object is known, can used model_name.objects.get(id=_num_)
+        to retrieve that object and examine any attribue the object has
+        >>> t = Topic.objects.get(id=1)
+        >>> t.text
+        'Chess'
+        >>> t.date_added
+        datetime.datetime(2023, 4, 14, 18, 51, 13, 701883, tzinfo=datetime.timezone.utc)
+
+    Can also look at entries related to a certain topic
+        in this case
+        in Entry model, defined topic attribute - ForeignKey (connection b/w entry and topic)
+        Django can used connection to get every entry related to a certain topic
+        >>> t.entry_set.all()
+        <QuerySet [<Entry: The opening is the first part of the game, roughly...>, 
+        <Entry: In the opening phase of the game, it's important t...>]>
+
+        get data through Foreign key relatinoship use the lowercase name of related model_set.all()
+
+much easiers to troubleshoot your code in shell environment than w/in the files that generate web pages
+exit shell
+    crtl-z+enter
+    

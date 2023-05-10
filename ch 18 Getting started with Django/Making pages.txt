@@ -1,0 +1,38 @@
+URL pattern - describes the way the URL is laid out, tells Django what to look for when matching a browser request
+    with a site URL so it knows which page to returns
+    Each URL then maps to a particular view
+
+view - function rerieves and processes data needed for that page, often renders the page using a template
+
+template - contains overall structure of the pages
+
+Mapping a URL
+    home page - base URL people use to access the project
+    
+    path() - maps URLs to views
+
+    dot in the line (from . import views) tells python to to import views.py module from the same directory as the current urls.py module
+
+    app_name variable helps Django distinguish current urls.py file from files of same name in other apps w/in project
+
+    urlpatterns - variable, list of individual pages that can be requested from app_name
+
+    Actual URL pattern - call to path(): taks 3 args-1) string arg that helps Django route the current request properly 
+                                                        searches for a match in URL patterns variable define & returns error if can't find
+                                                        empty string '' matches base URL 
+                                                    2) specifies which function to call in views.py
+                                                        When requested URL matches pattern (urlpatterns)
+                                                        Django calls index() in views.py
+                                                    3) provides name index for this URL pattern, refer to it in other code sections
+                                                        use this name for link to home page instead of URL
+    
+    Writing a view
+    view()- takes info from request, prepares data needed to generate page, and then sends data back to browser (often using template that defines
+                                                                                                                    what page will look like)
+    render()- renders response based on data provided by views
+
+    URL request matches pattern -> Djangos looks for index() in views.py-> passes request object to this view function -> render() passes 2 args - original request and template to build page
+
+    Writing a template
+    template - defines what a page should look like and Django fills in relevant data each time page is requested
+    allows access any data provided by view

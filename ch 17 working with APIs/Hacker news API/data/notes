@@ -1,0 +1,6 @@
+had to create the file since there was a connection error
+notes for the readable_hn_data file
+
+'descendants' key - number of comments the article recevied
+'kids' key - provides IDs of all comments made directly in response to this submission
+Each comment might have comments of their own so the number of descendants is usually larger than kids

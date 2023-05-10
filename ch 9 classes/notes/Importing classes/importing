@@ -1,0 +1,43 @@
+Importing single class
+there could be a naming issue: you made already have file named something 
+    you wish to name a module as. 
+    you'll replaced the file
+    any program using the class you want to use needs to have a specific filename
+
+    makes your main program clean and easy to read when having modules
+    store most of logic in separate files,
+    which leavs you to focus on the higher-level logic of your main program
+
+Storing multiple classes in a module
+    each class should be relates somehow
+
+Importing Multiple Classes from a module
+    can import as many classes as you need into a program file
+    separate each class with a comma when importing
+
+Importing an Entire Module
+    access each class using dot notation
+    approach is simple and code is easy to read
+        B/c every call that creates an instance of a class includes the module name,
+            won't have naming conflicts with any names used in current file
+    access classes need through module_name.ClassName 
+
+Importing all classes from a Module
+    used syntax:  from moudle_name import *
+    Not RECIMMENDED
+     lead to confusion about the classes being imported
+        & don't know if class has a same name as something else in your program
+
+importing a module into a module
+    spread out classes over several modules to keep any 1 file from growing to large
+        & avoid storing unrelated classes in the same module
+    might a class in one module depends on a class in another
+        import required class into 1st module (import parent class in the child class' module)
+    import each module separately 
+
+Using Aliases
+    helpful when using modules to organize project's code
+    can use aliases when importing classes as well
+EX:
+    from electric_car import ElectricCar as EC
+        my_tesla = EC('tesla'm, 'model', 2019)

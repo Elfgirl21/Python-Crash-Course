@@ -1,0 +1,2 @@
+class - set of instructions for how to make an instance
+class Dog -tells python how to make individual instances representing specific dogs

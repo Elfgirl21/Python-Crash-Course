@@ -1,0 +1,12 @@
+modify attributes associated w/ particular instance
+    modify direct or write methods that update attributes in specific ways
+
+Setting a default value for a attributes
+    when an instance is created, attributes can be definded w/out being passed in as parameters
+    these attributes are defined in __init__
+
+Modifying attributes values
+    three ways: 
+        directly through the instance
+        set value through method
+        increment the value through a method

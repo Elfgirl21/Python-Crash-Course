@@ -1,0 +1,19 @@
+function of class is a method
+__init__() method - special method that python runs automatically whenever 
+    were create a new instance based on the Dog class
+    convention of underscores is to prevent python's default method names from
+        conflicting with your method names
+    three parameters:
+        self parameter is required in method def & comes first
+            included b/c when python calls this method later (to create an instance of Dog)
+            method call will automatically pass the self argument
+            every method call associated w/ an instance automatically passes self,
+            which is a reference to the instance itself
+                gives individaul instance access to the attributes & methods in class
+    other give 2 parameters when creating a instance in the class Dog case
+    prefix self
+        any variable prefixed with self is available to every method in the class
+        & able to access these variable through any instance created from the class
+        self.name = name - takes value associated w/ parameter name and assigns it to variable name
+            then attached to the instance being created
+        variables accessible through instances like this are called attributes

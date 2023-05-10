@@ -1,0 +1,26 @@
+if class working on is an specialized version of another class,
+    can use inheritance
+
+when one class inherits from another
+    inheirts all attributes & methods
+
+original - parent superclass
+new - child  subclass
+child class can inheirt any or all atributes and methods of parent's
+    aslo free to define new attributes & methods
+parent & child must be in same file, parent before child
+
+override methods from the parent class
+    if method in parent doesn't fit model in child class
+    define a method in child (same name in parent) to override
+        python will disregrd parent class method, only focus on child method
+
+instances as attributes
+when files becomes too lengthy by adding methods and attributes
+    might recognize part of one class can be written as a separte class
+    break larger classes into smaller classes that work together
+
+Modeling real-world objects
+    might have to torn apart and rewritten your classes when modeling real world object
+    ex: move get_range() method from Battery to Electricar if it's manufacturer's entire line up
+        or keep it in Battery if diff car models

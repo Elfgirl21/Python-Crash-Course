@@ -1,0 +1,16 @@
+random module
+    randint() - takes 2 integer arguments & returns a randomly selected integer
+                    between those intergers
+        ex: in a termial
+        >>> from random import randint
+        >>> randint(1, 6)
+        3
+    choice() - takes in a list or tuple & returns a randomly chosen element
+        ex: in a terminal
+        >>> from random import choice
+        >>> players = ['charles','martina', 'michael', 'florence', 'eli']
+        >>> first_up = choice(players)
+        >>> first_up
+        'florence'
+
+    this module shouldn't be used when building security-related applications.

@@ -1,0 +1,37 @@
+Testing a function
+    python provides efficent way to automate testing of a function's output
+
+    Unit Tests & Test cases
+        unittest module - from python standardy library
+            provides tools for testing code
+            Unit test - verifies one speciic aspect of ufunction's behavior is correct 
+            Test case - collection of unit tests that together prove that a function 
+                behaves as it's supposed to
+                Full coverage - includes full range of unit tests covering all possible ways can use a function
+        Good enough to write tests for critical behavoirs, then aim for full coverage only if project starts to
+            see widespread use
+
+    A Passing Test 
+
+    A Failing Test
+
+E ((one error))
+======================================================================
+ERROR: test_first_last_name (__main__.NamesTestCase.test_first_last_name)
+Do names like 'Janis Joplin' work?
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\Elfgirl21\Desktop\ch 11\Testing a function\test_name_function.py", line 9, in test_first_last_name
+    formatted_name = get_formatted_name('janis', 'joplin')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_formatted_name() missing 1 required positional argument: 'last'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.027s
+
+FAILED (errors=1)
+
+    Responding to a Failed Test
+    fix the code that cause the test to Failed
+
+    Adding New tests

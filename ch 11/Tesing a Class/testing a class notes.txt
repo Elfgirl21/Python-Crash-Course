@@ -1,0 +1,29 @@
+Testing a Class
+    helpful to prove that your classes work correctly
+
+    Variety of Assert Methods
+    _______________________________________________________
+    Method                  Use
+    -------------------------------------------------------
+    assertEqual(a,b)        Verify that a == b
+    assertNotEqual(a,b)     Verity that a != b
+    assertTrue(x)           Verify that x is True 
+    assertFalse(x)          Verify that x is False 
+    assertIn(item, list)    Verify that item is in list
+    assertNotIn(item, list) Verify that item is not in list
+    --------------------------------------------------------
+
+    A Class to Test
+        testing behavior of methods in classes
+
+        Testing the AnonymousSurvery Class
+
+        The setUp() method
+        in test_survey.py we created a new instance of AnonymousSurvey in each test method & created new responses in each method
+
+        setUp() - allows you to create these objects once and then use them in each of your test methods
+            inlcude in TestCase class
+            python runs setUp() before running each method stsrting with test_survey
+            any object created in this method is available in each test method
+            1 set of instances & attributes
+                use them in alltest methods

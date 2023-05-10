@@ -1,0 +1,50 @@
+Restricting Access with @login_required
+@login_required decorator
+    decorator - directive placed just before a function def that python applies to the function before it runs to 
+    , to alterhow function code behaves
+
+Restricting Access to Topics PAge
+put @login_required before def Topics
+
+Restricting Access Throughtout Learning log
+It'Modifying the Topic Model
+s better to overrestrict than to underrestrict
+restrict any URL that's publicly accessible and relates to private user data
+
+Connecting Data to Certain Users
+connect only data highest in the hierarchy to a user and lower-level data will follow
+ex in Learning Log topics are highest level in app and all entries are connected to topic
+as long as each topic belongs to a specific user, we cn trace the ownership of each entry in database
+
+Modifying the Topic Model
+import User model from django.contrib.auth.models
+add an owner filed to Topic - establishes a foreign key relationship to User model
+if user is deleted, all topics associated w/ user will be deleted as well.
+
+Identifying Existing Users
+enter into the django shell to see Users
+
+Migrating the Database 
+after using the makemigrations command
+Django indicates that we're trying to add a required field to an existing model (topic) w/ no default
+We're prompted to choice: 1) provide a default right now or 2) exit and add one to models.py
+choose option 1
+    then asked to put default value
+    I associated all existing topics to admin user (ID 1)
+Django then migrates the database using this value and generates the migration file
+    learning_logs/mirgrations/0003_topic_owner.py
+    adds field owner to the Topic model
+
+Restricting Topics Access to Appropriate Users
+  only allow user to see their topics and entries
+
+Protecting a User's Topics
+raise a Http404 when user who doesn't own topic requests
+
+Protecting the edit_entry PAge
+raise Http404 to proctect edit_entry page from a user who doens't own topic and entry
+
+Associating New Topics with current user
+right now, adding new topic is broken. 
+get error message: IntegrityError NOT NULL constraint failed: learning_logs_topic.owner_id
+Django's saying can't create new topic w/out specifying a value for topic's owner field

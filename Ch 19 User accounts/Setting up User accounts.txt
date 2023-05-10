@@ -1,0 +1,69 @@
+The users App
+create a new app, use the startapp command
+    make sure to be in project folder before doing this command
+creates new directory called users (folder)
+
+Login Page
+different from the URL patterns see in learning_logs
+using default login view Django provides
+
+import both path and include functions
+    include some default authentication URLs that Django has defined
+    why we use include function
+    
+    login page's patter matches URL http://127.0.0.1:8000/users/login/
+    Django reads URL, users tells Django to look in users/urls.py
+    and login tells it to send requests to Django's default login view
+
+Login template
+User requests login page, Django will use default view function but we still need to provide a template
+the default autentication views look for templates inside a folder called reistration, so need to create that folder
+
+Note: templae in one app can inherit from a template in another app
+if form's errors attribute is set, can display error message
+want login view to process the form, set action arg as URL of login page
+login view sends form to template and up to use to display the form {{ form.as_p }}
+Included a hidden element value set to next to redirect to the home page when user successful logged in.
+
+Linking to the login page
+want the login link to appear on every page but don't want it display when user is already logged in, so we nest it inside {% if %}
+
+Django's authentication system
+    every template has a user variable available, which always has an is_authenticated attribute set
+        the attribute is set to True if user is logged in and False if they aren't. Allows you to display message to authenticated users and
+        one to unauthenticated users
+
+Using the login page
+make sure to spell things correctly!!!!!
+
+Logging out
+Adding a logout link to base.html
+    available on every page
+default named URL pattern for logging out is simply 'logout'
+
+The logout confirmation page
+default logout view renders the page using the template logged_out.html
+
+The Registration page
+    using Django's default UserCreationForm but write our own view function and template
+the register URL
+
+The register() view function
+    needs to display a blank registration form when registration page is first requested and then process completed registration forms when they're submitted
+    when registration is successful, function also needs to log in the new user
+
+    import login() to log user in if their registration info is correctly
+    import default UserCreationForm
+
+    within register()
+    check whether or not dealing with POST request: if not, blank UserCreationForm
+    if so, check data is valid - check if username has appropriate characters, passwords match and user isn't trying to do anything malicious in their submission
+    if valid, called the form.save() - saves username and hash of the password store to database
+    save() method returns a newly created user object, assigned as new_user
+
+The register template
+    used as_p method again so Django will display all fields in the form appropriately, including any error messages if form 
+    isn't filled out correctly
+
+Linking to the Registration Page
+

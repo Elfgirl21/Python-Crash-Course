@@ -1,0 +1,122 @@
+Adding new Topics
+form-based pages work much the same way as pages buildt before
+major difference - addition of new module called forms.py(contain the forms)
+
+Topic ModelForm
+form - any page that lets user to enter and submit info on web page
+need to validate - info provided is right kind of data and not malicious
+then process and save valid info to appropriate place in database
+    Django automates much of this work
+
+ModelForm - uses info from models we define to automatically build a form. 
+    for Topicform class which inherits from forms.ModelForm
+        has class Meta (simplest version that telss Django which model to base the form on 
+            and which fields to include in form)
+
+New_topic url   
+path('new_topic/', views.new_topic, name='new_topic') - send requests to view 
+    function new_topic()
+
+new_topic() view function
+    two situations to handle: initial requests for new_topic page (blank form)
+        and processing any data submitted in form
+    after data from submitted form is processed, needs to redirect the user
+        back to the topics page
+
+    have to import function redirect
+        this function takes in name of view and redirects user to that view
+    also import Topicform
+
+    when user has submitted data (request.POST), data must be validated
+    is_valid() method - checks that all required fields have been filled in (by default, all fields in forms are required)
+        and that the data entered matches field types expected
+    
+    save()- writes data from form to database
+
+    context variable written at end of new_topic view function 
+    outside of if block
+
+The new_topic Template 
+    define HTML form.
+    action arg - tells browser where to send data submitted in form
+        in this case, send it back to view function new_topic()
+    method arg - tells browser to submit data as a POST request
+
+    {% csrf_token %} - Django uses template tag to prevent attackers from using the form
+        to gain unauthorized access to server 
+        (type of attack called cross-site request forgery)
+
+    {{ form.as_p }} - display form
+     only need template variable for Django o create all fields necessary
+     to display form automatically
+     as_p modifier tells Django to render all the form elements in paragraph format
+
+    define a submit button since Django doesn't create one for us
+
+Linking to new_topic page
+
+Adding New Entries
+The Entry ModelForm
+    import Entry from .models python file
+    class EntryForm which inherits forms.ModelForm
+    has nested Meta class listing model it's based on and the field to include in form
+    blank label
+    widget attribute - an HTML form element(ex: single-line text, multi-line text area, drop-down list)
+        overriding Django's default widget choices. 
+        Telling Django to use forms.Textarea element - customizing the input widget for field 'text
+            so text area is 80 columns wide instead of default 40
+
+The new_entry url
+   path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry')
+    matches any URL with the form http://127.0.0.1:8000/new_entry/id/
+    when URL matching this pattern is requested, Django sends request and topic's ID to new_entry() view function
+
+The new_entry() View function
+ Update the import statement: EntryFrom after Topicform
+ new_topic() method has additional parameter to request: topic_id
+    need topic to render page and process form's data (use topic_id to get correct topic object)
+ if request is GET; create blank instance of EntryForm
+ if request is POST; process data by making instance of EntryForm, popluated with POST data from the request object
+    check if form is valid
+        if yes, then need entry's topic attribute before saving to database
+      when call save(), include arg commit=False - tell Django to create a new entry object and
+        assign it to new_entry w/out saving it to database yet
+    set topic attribute of new_entry to the topic pulled from database
+        new_entry.topic = topic
+    then call save() with no args, saving entry to database with correct assoicated topic
+    redirect() - requires two args - name of view wanted and the arg view function requires
+        redirect('learning_logs:topic', topic_id=topic_id)
+
+The new_entry template
+the form's action arg includes the topic_id value in URL so view function can associate the new entry with the correct topic
+
+Linking to the new_entry page
+place add entries just before showing the entries b/c adding new entries will be common on this page
+
+Editing Entries
+The edit_entry URL
+URL for page needs to pass the ID of entry to be edited.
+ID passed in URL (http://127.0.0.1:8000/edit_entry/1/) is stored in parameter entry_id
+URL patterns sends requests that match this fromat to view fuction edit_entry()
+
+The edit_entry() View function
+import Entry models
+entry = Entry.objects.get(id=entry_id)
+    what the user wants to edit and the topic associated with it 
+the arg instance=entry inside EntryForm() - tells Django to create the form prefilled w/ info 
+from existing entry object
+When processing the POST request, pass both instance=entry and data=request.POST 
+    both tell Django to create a form instance based on the info associated with the existing entry object, 
+    updated with any relevant data from request.POST
+then check if valid
+    if it is, call save() w/ no args - b/c we already have the entry associated with correct topic
+    then redirect to topic page, to see updated version of entry edited
+    if showing initial form for editing the entry or submitted form is invalid, create context dirctionary and render the page using the edit_entry.html template
+
+the edit_entry template
+action arg sends form back to edit_entry() function for processing
+included the ID as arg in {% url %} tage, so view function can modify correct entry object
+label submit button as Save changes
+
+Linking to the edit_entry page
+add edit link after each entry's date and text has been displayed
